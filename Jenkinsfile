@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Install pip deps') {
             steps {
-                cleanWs()
+                cleanWs(notFailBuild: true)
                 script{
                     install_pip_dep()
                 }
