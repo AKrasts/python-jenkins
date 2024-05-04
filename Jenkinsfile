@@ -82,17 +82,18 @@ def install_pip_dep(){
     bat "del /F /S /Q python-greetings"
     bat "git clone https://github.com/AKrasts/python-greetings.git"
     bat "dir"
-    bat "cd python-greetings"
-    bat "dir"
-    bat "pip install -r requirements.txt"
+    dir('python-greetings') {
+        bat "pip install -r requirements.txt"
+    }  
 }
 
 def deploy(String enviroment, int port) {
     echo "Deployment to ${enviroment} has started ..."
-    bat "cd python-greetings"
-    bat "npm install -g pm2"
-    bat "pm2 delete greetings-${enviroment} & set \"errorlevel=0\""
-    bat "pm2 start app.py --name greetings-\"${enviroment}\" -- --port ${port}"
+    dir('python-greetings') {
+        bat "npm install -g pm2"
+        bat "pm2 delete greetings-${enviroment} & set \"errorlevel=0\""
+        bat "pm2 start app.py --name greetings-\"${enviroment}\" -- --port ${port}"
+    }  
 }
 
 def test(String enviroment) {
