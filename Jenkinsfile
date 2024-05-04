@@ -91,7 +91,7 @@ def deploy(String enviroment, int port) {
     echo "Deployment to ${enviroment} has started ..."
     dir('python-greetings') {
         bat "npm install -g pm2"
-        bat "pm2 delete greetings-${enviroment} & set \"errorlevel=0\""
+        bat "pm2 delete greetings-${enviroment} & EXIT /B 0"
         bat "pm2 start app.py --name greetings-\"${enviroment}\" -- --port ${port}"
     }  
 }
