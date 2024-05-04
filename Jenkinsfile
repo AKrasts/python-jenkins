@@ -79,7 +79,7 @@ pipeline {
 def install_pip_dep(){
     echo 'Installation of pip dependencies is starting ...'
     bat "dir"
-    bat "del /S /Q python-greetings"
+    bat "del /F /S /Q python-greetings"
     bat "git clone https://github.com/AKrasts/python-greetings.git"
     bat "dir"
     bat "cd python-greetings"
