@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Install pip deps') {
             steps {
+                cleanWs()
                 script{
                     install_pip_dep()
                 }
@@ -79,7 +80,6 @@ pipeline {
 def install_pip_dep(){
     echo 'Installation of pip dependencies is starting ...'
     bat "dir"
-    bat "del /F /S /Q python-greetings"
     bat "git clone https://github.com/AKrasts/python-greetings.git"
     bat "dir"
     dir('python-greetings') {
