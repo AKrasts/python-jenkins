@@ -73,20 +73,13 @@ pipeline {
                 }
             }
         }
-
-        stage('Cleanup') {
-            steps {
-                script{
-                    cleanup()
-                }
-            }
-        }
     }
 }
 
 def install_pip_dep(){
     echo 'Installation of pip dependencies is starting ...'
     bat "dir"
+    bat "del python-greetings"
     bat "git clone https://github.com/AKrasts/python-greetings.git"
     bat "dir"
     bat "cd python-greetings"
@@ -104,10 +97,5 @@ def deploy(String enviroment, int port) {
 
 def test(String enviroment) {
     echo "Testing on ${enviroment} has started ..."
-}
-
-def cleanup() {
-    echo "Cleanup has started ..."
-    bat "del python-greetings"
 }
 
